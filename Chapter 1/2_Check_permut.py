@@ -7,6 +7,7 @@ def chk_permu(s1,s2):
     if len(str1) == len(str2):
         if list(sorted(str1)) != list(sorted(str2)):
             return False
+    return True
 
 # Test Case1 - str1 = "abcd", str2 = "dbca"
 # Test Case2 - str1 = "abc d", str2 = "cdba"
