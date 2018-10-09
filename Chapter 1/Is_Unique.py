@@ -10,7 +10,7 @@ def unq_char(string):
     if len(str_list) != len(unq_list):
         return False
 # Test Cases - Test = "abcd123 e", Test = "abc@$a% 1de)"
-Test = "abcde"
+Test = input()
 
 Chk = unq_char(Test)
 print (Chk)
