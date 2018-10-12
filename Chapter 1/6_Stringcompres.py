@@ -18,7 +18,7 @@ def strcomp(string):
 
     if len(comp_string) > len(string):
         return string
-    
+
     return comp_string
 
 ''' Test Cases - aabcccccaaa, dddddeeeeZZZQUUii, abcd'''
