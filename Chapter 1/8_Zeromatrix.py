@@ -13,16 +13,12 @@ def change2zero(m):
     ''' Change all the values for the required rows and columns to zeros, by using the output obtained above'''
     for p, q in save_index:
         for each in m:
+            if all([v == 0 for v in each]):
+                continue
             if m.index(each) == p:
-                if all([v == 0 for v in each]):
-                    continue
-                else:
-                    new_matrix[p] = [0 for _ in range(len(each))]
+                new_matrix[p] = [0 for _ in range(len(each))]
             else:
-                if all([v == 0 for v in each]):
-                    continue
-                else:
-                    new_matrix[m.index(each)][q] = 0
+                new_matrix[m.index(each)][q] = 0
 
     return (new_matrix)
 
@@ -30,6 +26,6 @@ def change2zero(m):
 [[1, 2, 0, 4], [6, 7, 8, 9], [11, 12, 13, 0], [16, 17, 18, 19], [21,  22, 23, 24]]
 [[1, 2, 3], [6, 7, 8], [11, 12, 13], [0, 17, 18]]
 [[1, 2], [0, 0], [11, 12]]'''
-matrix = [[1, 2], [0, 0], [11, 12]]
+matrix = [[1, 2, 0, 4], [6, 7, 8, 9], [11, 12, 13, 0], [16, 17, 18, 19], [21,  22, 23, 24]]
 result = change2zero(matrix)
 print (result)
