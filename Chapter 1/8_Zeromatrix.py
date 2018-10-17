@@ -4,11 +4,13 @@ from collections import defaultdict
 def change2zero(m):
     save_index = []
     new_matrix = m[:]
+    ''' Save all the indexes of elements containing zeroes in the format (a,b), where a is the index of matrix, and
+     b is he index of zero within that matrix'''
     for i in range(len(m)):
         for k in range(len(m[i])):
             if m[i][k] == 0:
                 save_index.append(tuple([i,k]))
-
+    ''' Change all the values for the required rows and columns to zeros, by using the output obtained above'''
     for p, q in save_index:
         for each in m:
             if m.index(each) == p:
