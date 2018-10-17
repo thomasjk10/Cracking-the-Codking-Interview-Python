@@ -1,0 +1,33 @@
+''' Convert entire row and column to zeros, if a zero is encountered in the matrix'''
+from collections import defaultdict
+
+def change2zero(m):
+    save_index = []
+    new_matrix = m[:]
+    for i in range(len(m)):
+        for k in range(len(m[i])):
+            if m[i][k] == 0:
+                save_index.append(tuple([i,k]))
+
+    for p, q in save_index:
+        for each in m:
+            if m.index(each) == p:
+                if all([v == 0 for v in each]):
+                    continue
+                else:
+                    new_matrix[p] = [0 for _ in range(len(each))]
+            else:
+                if all([v == 0 for v in each]):
+                    continue
+                else:
+                    new_matrix[m.index(each)][q] = 0
+
+    return (new_matrix)
+
+''' Test Cases:
+[[1, 2, 0, 4], [6, 7, 8, 9], [11, 12, 13, 0], [16, 17, 18, 19], [21,  22, 23, 24]]
+[[1, 2, 3], [6, 7, 8], [11, 12, 13], [0, 17, 18]]
+[[1, 2], [0, 0], [11, 12]]'''
+matrix = [[1, 2], [0, 0], [11, 12]]
+result = change2zero(matrix)
+print (result)
