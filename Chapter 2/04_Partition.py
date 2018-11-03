@@ -1,4 +1,5 @@
-''' Remove a node from a linked list'''
+''' Partition a linked list at a particular value x present in it such that elements lesser than x
+appear before the values greater than x'''
 
 class mynode:
 
@@ -72,13 +73,13 @@ class MyLinkList:
 
         comb_node = les_nodes
         new_list = []
+        while les_nodes.nextptr != None:
+            les_nodes = les_nodes.nextptr
+        les_nodes.nextptr = grt_nodes
+        new_list.append(comb_node.data)
         while comb_node.nextptr != None:
             comb_node = comb_node.nextptr
-        comb_node.nextptr = grt_nodes
-        current_node = les_nodes
-        while current_node.nextptr != None:
-            current_node = current_node.nextptr
-            new_list.append(current_node.data)
+            new_list.append(comb_node.data)
         return new_list
 
 
