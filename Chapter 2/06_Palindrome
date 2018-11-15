@@ -1,0 +1,72 @@
+''' Remove a node from a linked list'''
+
+class mynode:
+
+    def __init__(self,data=None):
+        self.data = data
+        self.nextptr = None
+
+class MyLinkList:
+
+    def __init__(self):
+        self.first = mynode()
+
+    def listsize(self):
+        total = 0
+        curr_node = self.first
+        if curr_node.data == None:
+            return total
+        while curr_node.nextptr !=None:
+            total = total +1
+            curr_node = curr_node.nextptr
+        return (total +1)
+
+    def reverse(self):
+        curr_node = self.first
+        prev_node = None
+        next_node = None
+        while curr_node:
+            next_node = curr_node.nextptr
+            curr_node.nextptr = prev_node
+            prev_node = curr_node
+            curr_node = next_node
+        self.first = prev_node
+
+    def adddata_end(self,data):
+        if self.first.data == None:
+            self.first = mynode(data)
+            curr_node = self.first
+            new_node = curr_node.nextptr
+        else:
+            new_node = mynode(data)
+            curr_node = self.first
+        while curr_node.nextptr!= None:
+            curr_node = curr_node.nextptr
+        curr_node.nextptr = new_node
+
+    def palind_check(self):
+        backup = self.first
+        rev_node = mynode()
+        cnt = 0
+        prev_node = self.first
+        curr_node = self.first
+        while (self.listsize()) // 2 == cnt:
+            while curr_node.nextptr != None :
+                prev_node = curr_node
+                curr_node = curr_node.nextptr
+
+            while rev_node.nextptr != None:
+                rev_node = rev_node.nextptr
+            rev_node.nextptr = prev_node
+
+            prev_node.nextptr = curr_node.nextptr
+            cnt += 1
+
+myllist = MyLinkList()
+myllist.adddata_end(1)
+myllist.adddata_end(2)
+myllist.adddata_end(3)
+myllist.adddata_end(4)
+myllist.adddata_end(5)
+myllist.reverse()
+myllist.palind_check()
