@@ -1,0 +1,75 @@
+''' Obtain sum of 2 linked lists'''
+
+class mynode:
+
+    def __init__(self,data=None):
+        self.data = data
+        self.nextptr = None
+
+class MyLinkList:
+
+    def __init__(self):
+        self.first = mynode()
+
+    def adddata_end(self,data):
+        if self.first.data == None:
+            self.first = mynode(data)
+            curr_node = self.first
+            new_node = curr_node.nextptr
+        else:
+            new_node = mynode(data)
+            curr_node = self.first
+        while curr_node.nextptr!= None:
+            curr_node = curr_node.nextptr
+        curr_node.nextptr = new_node
+
+def sumlist(l1,l2):
+    curr_l1 = l1.first
+    curr_l2 = l2.first
+    result = mynode()
+    carry = 0
+    digits_sum = 0
+    while curr_l1 or curr_l2:
+        if curr_l1:
+            digits_sum += curr_l1.data + carry
+            curr_l1= curr_l1.nextptr
+        if curr_l2:
+            digits_sum += curr_l2.data
+            curr_l2 = curr_l2.nextptr
+
+        carry = digits_sum // 10
+
+        if result.data == None:
+            result.data = digits_sum % 10
+        else:
+            res_check = result
+            while res_check.nextptr != None:
+                res_check = res_check.nextptr
+            res_check.nextptr = mynode(digits_sum % 10)
+
+        digits_sum = 0
+
+    if carry != 0:
+        res_check = result
+        while res_check.nextptr != None:
+            res_check = res_check.nextptr
+        res_check.nextptr = mynode(carry)
+
+    dislist = []
+    curr_node = result
+    while curr_node:
+        dislist.append(curr_node.data)
+        curr_node = curr_node.nextptr
+
+    return dislist
+
+
+myllist1 = MyLinkList()
+myllist2 = MyLinkList()
+myllist1.adddata_end(3)
+myllist1.adddata_end(5)
+myllist1.adddata_end(8)
+myllist2.adddata_end(1)
+myllist2.adddata_end(4)
+myllist2.adddata_end(8)
+print (sumlist(myllist1,myllist2))
